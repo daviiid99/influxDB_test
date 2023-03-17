@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:influxdb_client/api.dart';
@@ -15,12 +16,21 @@ class InfluxdbModel extends BaseViewModel{
   static InfluxDBClient createClient(){
     // Este metodo crea un cliente para influxdb
 
-    return client = InfluxDBClient(
-        url: 'http://localhost:8086',
-        token: 'JLnYTAp0LsqQWp3uqmk6MHjalgxE9kTl-cwkbuZPefImS5sjIQZyrP7HXWIdvbeAgBVieqVv-am5XT00H5AZFA==',
-        org: 'local',
-        bucket: 'test',
-        debug: true);
+    if (Platform.isAndroid){
+      return client = InfluxDBClient(
+          url: 'http://10.0.2.2:8086',
+          token: 'JLnYTAp0LsqQWp3uqmk6MHjalgxE9kTl-cwkbuZPefImS5sjIQZyrP7HXWIdvbeAgBVieqVv-am5XT00H5AZFA==',
+          org: 'local',
+          bucket: 'test',
+          debug: true);
+    } else {
+      return client = InfluxDBClient(
+          url: 'http://localhost:8086',
+          token: 'JLnYTAp0LsqQWp3uqmk6MHjalgxE9kTl-cwkbuZPefImS5sjIQZyrP7HXWIdvbeAgBVieqVv-am5XT00H5AZFA==',
+          org: 'local',
+          bucket: 'test',
+          debug: true);
+    }
 
   }
 
