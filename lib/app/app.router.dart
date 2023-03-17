@@ -7,11 +7,14 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i5;
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as _i7;
 import 'package:prueba_stackeddart/ui/views/counter/counter_view.dart' as _i4;
 import 'package:prueba_stackeddart/ui/views/home/home_view.dart' as _i2;
 import 'package:prueba_stackeddart/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
+import 'package:stacked/stacked.dart' as _i7;
 import 'package:stacked_services/stacked_services.dart' as _i6;
+import 'package:prueba_stackeddart/ui/views/influxdb/influxdb_view.dart' as _i7;
 
 class Routes {
   static const homeView = '/home-view';
@@ -20,10 +23,13 @@ class Routes {
 
   static const counterView = '/counter-view';
 
+  static const influxView = '/influxdb-view';
+
   static const all = <String>{
     homeView,
     startupView,
     counterView,
+    influxView
   };
 }
 
@@ -40,6 +46,10 @@ class StackedRouter extends _i1.RouterBase {
     _i1.RouteDef(
       Routes.counterView,
       page: _i4.CounterView,
+    ),
+    _i7.RouteDef(
+      Routes.influxView,
+      page: _i7.InfluxdbView,
     ),
   ];
 
@@ -61,6 +71,13 @@ class StackedRouter extends _i1.RouterBase {
     _i4.CounterView: (data) {
       return _i5.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.CounterView(),
+        settings: data,
+        maintainState: false,
+      );
+    },
+    _i7.InfluxdbView: (data) {
+      return _i7.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.InfluxdbView(),
         settings: data,
         maintainState: false,
       );
